@@ -65,7 +65,7 @@ put "/filters/update/:id" do |id|
   end
 end
 
-post "/filters/destroy/:id" do |id|
+delete "/filters/destroy/:id" do |id|
   @filter = Filter.get(id)
   if @filter.destroy
     redirect "/filters"
