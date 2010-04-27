@@ -2,8 +2,10 @@
 
 require 'rubygems'
 require 'sinatra'
+require 'dm-core'
 require 'json'
 require 'haml'
+require 'logger'
 
 require 'lib/barking_iguana'
 require 'config'
@@ -11,8 +13,6 @@ require 'models/filter'
 require 'models/feed'
 
 FEED_URL = 'http://api.stocktwits.com/api/streams/public.json'
-
-set :logging, :true
 
 get "/" do
   @feed = Feed.new(test_json_message) # for testing
@@ -54,8 +54,8 @@ post "/filters/create" do
   end
 end
 
-put "/filters/update/:id" do |id|
-  @filter = Filter.get(id)
+get "/filters/:id/update" do
+  @filter = Filter.get(params[:id])
   if @filter.update(params[:filter])
     # success
     redirect "/filters/edit/#{params[:id]}"
@@ -65,9 +65,9 @@ put "/filters/update/:id" do |id|
   end
 end
 
-delete "/filters/destroy/:id" do |id|
-  @filter = Filter.get(id)
-  if @filter.destroy
+get "/filters/:id/delete" do
+  @filter = Filter.get(params[:id])
+  if !@filter.nil? && @filter.destroy!  
     redirect "/filters"
   else
     haml :index

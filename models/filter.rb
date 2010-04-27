@@ -29,9 +29,3 @@ class Filter
     filter_type == Types[key]
   end
 end
-
-DataMapper.auto_migrate!
-
-filter = Filter.new
-filter.attributes = {:name => "Google Filter", :filter_matcher => "http://google.com", :filter_type => "url"}
-filter.save
