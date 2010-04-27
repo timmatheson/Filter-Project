@@ -1,0 +1,23 @@
+%h1 Edit Filter
+
+%form(action="/filters/update/#{@filter.id}" method="PUT")
+  %fieldset
+    %legend Filter Settings
+    %p
+      %label Name:
+      %br
+    %input(type='text' name='filter[name]' value='#{@filter.name}')
+    %p
+      %label Filter Type:
+      %br
+      %select(name='filter[filter_type]')
+        - Filter::Types.each do |name, value|
+          %option(value='#{value}')
+            =name
+    %p
+      %label Filter Matcher
+      %br
+      %input(type='text' name='filter[filter_matcher]' value='#{@filter.filter_matcher}')
+  
+    %p
+      %input(type='submit' value='Update Filter')

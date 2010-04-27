@@ -1,0 +1,9 @@
+%h1 Filters
+
+- Filter.all.each do |filter|
+  %li
+    ="#{filter.name}"
+    %a(href='/filters/edit/#{filter.id}') Edit
+    %a(href='/filters/destroy/#{filter.id}' method='post') Destroy
+
+  

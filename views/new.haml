@@ -1,0 +1,22 @@
+%h1 New Filter
+%form(action = "/filters/create" method="POST")
+  %p
+    %label Name:
+    %br
+    %input(type='text' name='filter[name]')
+    %p
+      %label Filter Type:
+      %br
+      %select(name='filter[filter_type]')
+        - Filter::Types.each do |name, value|
+          %option(value='#{value}')
+            =name
+  
+  %p
+    %label Filter Matcher (pattern)
+    %br
+    %input(type='text' name='filter[filter_matcher]' value='')
+  
+  %p
+    %input(type='submit' value='Save Filter')
+  

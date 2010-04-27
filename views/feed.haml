@@ -1,0 +1,7 @@
+%h1 StockTwits.com Filter App
+%p 
+  Simple example filter app, built for StokTwits.com.
+%p
+  Feed
+  %pre
+    = @feed["messages"][0]["message"].keys.join(", ")
