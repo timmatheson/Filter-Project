@@ -20,7 +20,7 @@ describe Feed do
   end
   
   it "should be spam when body matches word filter" do
-    new_filter(:filter_type => "url", :filter_matcher => "Doing")
+    new_filter(:filter_type => "phrase_or_word", :filter_matcher => "WABC radio show re")
     Feed.new(test_json_message).spam?.should == true
   end
   

@@ -30,13 +30,13 @@ describe "StockTwits Filter App" do
     last_response.should be_redirect
   end
   
-  it "should respond to /filters/update/id" do
-    put '/filters/update', :id => new_filter.id, :filter => {:name => "My Filter"}
+  it "should respond to /filters/:id/update" do
+    get "/filters/#{new_filter.id}/update", :filter => {:name => "My Filter"}
     last_response.should be_redirect
   end
   
-  it "should respond to /filters/destroy/id" do
-    delete '/filters/destroy', :id => new_filter.id
+  it "should respond to /filters/:id/delete" do
+    get "/filters/#{new_filter.id}/delete"
     last_response.should be_redirect
   end
 end

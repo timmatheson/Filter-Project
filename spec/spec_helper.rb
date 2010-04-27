@@ -14,12 +14,11 @@ set :run, false
 set :raise_errors, true
 set :logging, false
 
+DataMapper.auto_migrate!
+
 def new_filter(options = {})
   filter = Filter.new
-  filter.attributes = {
-    :name => "Test", 
-    :filter_type => "url", 
-    :filter_matcher => "http://bit.ly/silly" }.merge!(options)
-  filter.save
+  filter.attributes = options
+  filter.save!
   filter
 end
